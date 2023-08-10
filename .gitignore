@@ -65,3 +65,5 @@ out/
 .vscode/
 *.yaml
 *.properties
+*.docx
+*.xlsx
