@@ -1,5 +1,7 @@
-package com.lima.hellotodaycore.connection.http;
+package com.lima.hellotodaycore.common.connection.http;
 
+import java.net.HttpRetryException;
+import java.net.http.HttpConnectTimeoutException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -21,7 +23,7 @@ public class HttpConnection {
             return conn;
         } catch (IOException e) {
             log.error("", e);
-            return null;
         }
+      return null;
     }
 }
