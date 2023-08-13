@@ -42,7 +42,8 @@ public class CollectLog {
         }
 
         JsonNode deserialize = JsonUtils.deserialize(sb.toString(), JsonNode.class);
-        KafkaProducerConfig.send("", deserialize
+        assert deserialize != null;
+        KafkaProducerConfig.getInstance().send("", deserialize
             .get(ResponseType.RESPONSE.getType())
             .get(ResponseType.BODY.getType())
             .get(ResponseType.ITEMS.getType())

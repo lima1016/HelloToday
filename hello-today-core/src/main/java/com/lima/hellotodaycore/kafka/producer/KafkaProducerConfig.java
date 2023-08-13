@@ -10,14 +10,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 
+// singleton 으로 설정해보자
 @Configuration
 public class KafkaProducerConfig {
 
   @Value("${spring.kafka.bootstrap-servers}")
-  private static String server;
+  private String server;
+
+  private static class KafkaProducerSingleton {
+    private static  final KafkaProducerConfig KAFKA_SINGLETON = new KafkaProducerConfig();
+  }
+
+  public static KafkaProducerConfig getInstance() {
+    return KafkaProducerSingleton.KAFKA_SINGLETON;
+  }
 
   @Bean
-  public static KafkaTemplate<String, String> kafkaTemplate() {
+  public KafkaTemplate<String, String> kafkaTemplate() {
     Map<String, Object> properties = new HashMap<>();
     properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
 //    properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -26,7 +35,7 @@ public class KafkaProducerConfig {
     return new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(properties));
   }
 
-  public static void send(String topic, String message) {
+  public void send(String topic, String message) {
     kafkaTemplate().send(topic, message);
   }
 }
