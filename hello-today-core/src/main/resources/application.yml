@@ -1,0 +1,18 @@
+data-api-key: 3g%2Fd4w%2FtARZLfMnVnR4Qp%2FBSmp5Y6ruf5IH9X1FIgMomKQQYCbI5pn1NBlKWJDQgfkswjUJfBwVfp5tT%2FGTU4g%3D%3D
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hellordb
+    username: hellotoday
+    password: 1016
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # 애플리케이션 시작 시 테이블을 자동으로 생성/업데이트할지 설정
+    show-sql: true # SQL 쿼리를 콘솔에 출력할지 설정
+  kafka:
+    bootstrap-servers: localhost:9092
+  data:
+    mongodb:
+      uri: mongodb://hellomongo:1016@localhost:27017/hellomongo
+      authentication-database: hellomongo
