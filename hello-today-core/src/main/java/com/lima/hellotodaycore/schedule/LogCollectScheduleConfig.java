@@ -34,12 +34,12 @@ public class LogCollectScheduleConfig {
 
   // Cron 표현식을 사용하여 특정 시간에 작업을 실행하도록 설정.
   @Bean
-  CronTrigger morningTrigger(JobDetail myJobDetail) {
+  CronTrigger cronTrigger(JobDetail myJobDetail) {
     CronTriggerFactoryBean triggerFactory;
     try {
       triggerFactory = new CronTriggerFactoryBean();
       triggerFactory.setJobDetail(myJobDetail);
-      triggerFactory.setCronExpression("0 0/1 * * * ?"); // 매일 오전 6시마다 0 0/5 * * * ? => 매 5분 마다
+      triggerFactory.setCronExpression("0 0 06 * * ?"); // 매일 오전 6시마다 0 0/5 * * * ? => 매 5분 마다
       Map<String, Object> data = new HashMap<>();
       data.put("key", "1분간격 시작!");
       triggerFactory.setJobDataAsMap(data);
