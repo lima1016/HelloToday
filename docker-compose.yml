@@ -29,3 +29,26 @@ services:
     # 의존 관계 설정
     depends_on:
       - zookeeper
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: hellordb
+      POSTGRES_USER: hellotoday
+      POSTGRES_PASSWORD: 1016
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: hellomongo
+      MONGO_INITDB_ROOT_PASSWORD: 1016
+      MONGO_INITDB_DATABASE: hellomongo
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
