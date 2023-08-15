@@ -3,7 +3,7 @@ package com.lima.hellotodaycore.common.utils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class DateTimeUtils {
+public class HelloDateUtils {
 
   public static final String yyyyMMdd = "yyyyMMdd";
 

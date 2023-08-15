@@ -1,5 +1,6 @@
 package com.lima.hellotodaycore.schedule;
 
+import com.lima.hellotodaycore.schedule.batch.log.midcast.CollectMidCastLog;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class LogCollectScheduleConfig {
   @Bean
   public JobDetail myJobDetail() {
     JobDetailFactoryBean jobFactory = new JobDetailFactoryBean();
-    jobFactory.setJobClass(MyJob.class); // 작업을 실행할 클래스
+    jobFactory.setJobClass(CollectMidCastLog.class); // 작업을 실행할 클래스
     jobFactory.setName("My-Job"); // 작업의 이름
     jobFactory.setDurability(true); // 작업이 영구적인지 여부
 //    jobFactory.setRequestsRecovery(true); // 실패한 작업 재실행 여부
@@ -40,6 +41,7 @@ public class LogCollectScheduleConfig {
       triggerFactory = new CronTriggerFactoryBean();
       triggerFactory.setJobDetail(myJobDetail);
       triggerFactory.setCronExpression("0 0 06 * * ?"); // 매일 오전 6시마다 0 0/5 * * * ? => 매 5분 마다
+      triggerFactory.setDescription("");
       Map<String, Object> data = new HashMap<>();
       data.put("key", "1분간격 시작!");
       triggerFactory.setJobDataAsMap(data);

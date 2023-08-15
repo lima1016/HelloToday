@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.common.connection.db;
+package com.lima.hellotodaycore.common.config.db;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
