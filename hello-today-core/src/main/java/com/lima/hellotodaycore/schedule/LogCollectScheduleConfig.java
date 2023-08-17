@@ -40,7 +40,7 @@ public class LogCollectScheduleConfig {
     try {
       triggerFactory = new CronTriggerFactoryBean();
       triggerFactory.setJobDetail(myJobDetail);
-      triggerFactory.setCronExpression("0 0 06 * * ?"); // 매일 오전 6시마다 0 0/5 * * * ? => 매 5분 마다
+      triggerFactory.setCronExpression("0 0/1 * * * ?"); // 매일 오전 6시마다 0 0/5 * * * ? => 매 5분 마다
       triggerFactory.setDescription("");
       Map<String, Object> data = new HashMap<>();
       data.put("key", "1분간격 시작!");

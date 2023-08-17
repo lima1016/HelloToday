@@ -4,10 +4,10 @@ import lombok.Getter;
 
 @Getter
 public enum LogType {
-  MID_FCST("getMidFcst", "stnld", "tb_hello_mid", "중기 전망 조회")
-  , MID_LAND_FCST("getMidLandFcst", "regld", "tb_hello_mid_land", "중기 육상 예보 조회")
-  , MID_SEA_FCST("getMidSeaFcst", "regld", "tb_hello_mid_sea", "중기 기온 조회")
-  , MID_TA("getMidTa", "regld", "tb_hello_mid_ta", "중기 해상 예보 조회")
+  MID_FCST("getMidFcst", "stnId", "tb_hello_mid", "중기 전망 조회")
+//  , MID_LAND_FCST("getMidLandFcst", "regld", "tb_hello_mid_land", "중기 육상 예보 조회")
+//  , MID_SEA_FCST("getMidSeaFcst", "regld", "tb_hello_mid_sea", "중기 기온 조회")
+//  , MID_TA("getMidTa", "regld", "tb_hello_mid_ta", "중기 해상 예보 조회")
   ;
 
   private final String logApi;
