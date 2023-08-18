@@ -8,6 +8,7 @@ import com.lima.hellotodaycore.common.utils.HelloDateUtils;
 import com.lima.hellotodaycore.common.utils.JsonUtils;
 import com.lima.hellotodaycore.domain.midcast.entity.MidCastLog;
 import com.lima.hellotodaycore.domain.midcast.svc.LocationCodeService;
+import com.lima.hellotodaycore.kafka.consumer.KafkaConsumerConfig;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.type.LogType;
 import com.lima.hellotodaycore.schedule.type.ResponseType;
@@ -73,6 +74,9 @@ public class CollectMidCastLog implements Job {
         }
         conn.disconnect();
       }
+      KafkaConsumerConfig consumer = new KafkaConsumerConfig();
+      consumer.kafkaConsumerConfig();
+
     } catch (Exception e) {
       log.error("", e);
     }
