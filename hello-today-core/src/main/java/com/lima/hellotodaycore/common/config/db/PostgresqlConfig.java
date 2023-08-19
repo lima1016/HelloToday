@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DBConfiguration {
+public class PostgresqlConfig {
 
   @Value("${spring.datasource.driver-class-name}")
   private String className;

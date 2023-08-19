@@ -1,5 +1,7 @@
 package com.lima.hellotodaycore.kafka.consumer;
 
+import com.lima.hellotodaycore.common.utils.BeansUtils;
+import com.mongodb.client.MongoClient;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
@@ -12,6 +14,12 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 @Slf4j
 public class KafkaConsumerConfig {
+
+  private MongoClient mongoClient;
+
+  public KafkaConsumerConfig() {
+    this.mongoClient = BeansUtils.getBean(MongoClient.class);
+  }
 
   public void run() {
       Properties properties = new Properties();
@@ -28,6 +36,8 @@ public class KafkaConsumerConfig {
       // 레코드를 지속적으로 폴링
       while (true) {
         ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+        // mongo에 저장 해야해.
+
         records.forEach(record -> {
           System.out.println("record >>>> " + record);
         });
