@@ -50,7 +50,7 @@ public class CollectMidCastLog implements Job {
         urlBuilder.append("&").append(URLEncoder.encode("dataType", StandardCharsets.UTF_8)).append("=").append(URLEncoder.encode("JSON", StandardCharsets.UTF_8));
         urlBuilder.append("&").append(URLEncoder.encode(value.getCode(), StandardCharsets.UTF_8)).append("=").append(URLEncoder.encode(locationCode.getLocationCode(), StandardCharsets.UTF_8)); /*108 전국, 109 서울, 인천, 경기도 등 (활용가이드 하단 참고자료 참조)*/
         urlBuilder.append("&").append(URLEncoder.encode("tmFc", StandardCharsets.UTF_8)).append("=")
-            .append(URLEncoder.encode(HelloDateUtils.convertLocalDateNow(HelloDateUtils.yyyyMMdd) + "1800", StandardCharsets.UTF_8)); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력 YYYYMMDD0600 (1800)-최근 24시간 자료만 제공*/
+            .append(URLEncoder.encode(HelloDateUtils.convertLocalDateNow(HelloDateUtils.yyyyMMdd) + "0600", StandardCharsets.UTF_8)); /*-일 2회(06:00,18:00)회 생성 되며 발표시각을 입력 YYYYMMDD0600 (1800)-최근 24시간 자료만 제공*/
 
         HttpURLConnection conn = HttpConnection.getHttpURLConnection(urlBuilder);
 
@@ -66,16 +66,16 @@ public class CollectMidCastLog implements Job {
           JsonNode deserialize = JsonUtils.deserialize(sb.toString(), JsonNode.class);
 
           assert deserialize != null;
-          kafkaProducerConfig.send(value.getTopic(), deserialize
-              .get(ResponseType.RESPONSE.getType())
+          kafkaProducerConfig.send(value.getTopic()
+              , deserialize.get(ResponseType.RESPONSE.getType())
               .get(ResponseType.BODY.getType())
               .get(ResponseType.ITEMS.getType())
-              .get(ResponseType.ITEM.getType()).asText());
+              .get(ResponseType.ITEM.getType()).toString());
         }
         conn.disconnect();
       }
-      KafkaConsumerConfig consumer = new KafkaConsumerConfig();
-      consumer.kafkaConsumerConfig();
+
+      new KafkaConsumerConfig().run();
 
     } catch (Exception e) {
       log.error("", e);

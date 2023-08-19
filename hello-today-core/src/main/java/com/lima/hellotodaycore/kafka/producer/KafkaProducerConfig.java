@@ -29,7 +29,6 @@ public class KafkaProducerConfig {
 
   @Bean
   public KafkaTemplate<String, String> kafkaTemplate() {
-    System.out.println("server >>>> " + server);
     Map<String, Object> properties = new HashMap<>();
     properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
     properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
@@ -39,7 +38,7 @@ public class KafkaProducerConfig {
   }
 
   public void send(String topic, String message) {
-    System.out.println("server >>>> " + server);
+    System.out.println("message >>>> " + message);
     kafkaTemplate().send(topic, message);
   }
 }
