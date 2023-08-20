@@ -1,9 +1,11 @@
 package com.lima.hellotodaycore.kafka.consumer;
 
-import com.lima.hellotodaycore.common.utils.BeansUtils;
-import com.mongodb.client.MongoClient;
+import com.lima.hellotodaycore.common.config.db.MongoConnection;
+import com.lima.hellotodaycore.common.utils.JsonUtils;
 import java.time.Duration;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
@@ -14,12 +16,6 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 
 @Slf4j
 public class KafkaConsumerConfig {
-
-  private MongoClient mongoClient;
-
-  public KafkaConsumerConfig() {
-    this.mongoClient = BeansUtils.getBean(MongoClient.class);
-  }
 
   public void run() {
       Properties properties = new Properties();
@@ -39,7 +35,9 @@ public class KafkaConsumerConfig {
         // mongo에 저장 해야해.
 
         records.forEach(record -> {
-          System.out.println("record >>>> " + record);
+          List deserialize = JsonUtils.deserialize(record.value(), List.class);
+          MongoConnection.getInstance().insertOne("tb_hello_mid",
+              (Map<String, Object>) deserialize.get(0));
         });
         if (records.isEmpty()) {
           break;

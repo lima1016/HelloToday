@@ -14,7 +14,7 @@ spring:
     bootstrap-servers: localhost:9092
   data:
     mongodb:
-      uri: mongodb://hellomongo:1016@localhost:27017/hellomongo
-      authentication-database: hellomongo
+      uri: mongodb://hellomongo:1016@localhost:27017/hellonosql
+      authentication-database: hellonosql
       port: 27017
       host: localhost

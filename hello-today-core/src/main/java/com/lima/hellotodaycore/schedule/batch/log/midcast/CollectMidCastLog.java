@@ -62,7 +62,6 @@ public class CollectMidCastLog implements Job {
             sb.append(line);
           }
 
-          System.out.println("sb.toString() >>> " + sb);
           JsonNode deserialize = JsonUtils.deserialize(sb.toString(), JsonNode.class);
 
           assert deserialize != null;

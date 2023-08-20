@@ -46,7 +46,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: hellomongo
       MONGO_INITDB_ROOT_PASSWORD: 1016
-      MONGO_INITDB_DATABASE: hellomongo
+      MONGO_INITDB_DATABASE: hellonosql
     volumes:
       - mongodb_data:/data/db
 
