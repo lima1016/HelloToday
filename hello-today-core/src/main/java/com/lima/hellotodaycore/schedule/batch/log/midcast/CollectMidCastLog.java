@@ -13,6 +13,7 @@ import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.type.LogType;
 import com.lima.hellotodaycore.schedule.type.ResponseType;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URLEncoder;
@@ -41,7 +42,6 @@ public class CollectMidCastLog implements Job {
         // 구역 코드 구하기
         MidCastLog locationCode = codeService.getLocationCode(value);
         String logApi = "http://apis.data.go.kr/1360000/MidFcstInfoService/" + value.getLogApi();
-        String apiKey = "3g%2Fd4w%2FtARZLfMnVnR4Qp%2FBSmp5Y6ruf5IH9X1FIgMomKQQYCbI5pn1NBlKWJDQgfkswjUJfBwVfp5tT%2FGTU4g%3D%3D";
 
         StringBuilder urlBuilder = new StringBuilder(logApi);
         urlBuilder.append("?").append(URLEncoder.encode("serviceKey", StandardCharsets.UTF_8)).append("=").append(apiKey);
@@ -79,5 +79,32 @@ public class CollectMidCastLog implements Job {
     } catch (Exception e) {
       log.error("", e);
     }
+  }
+
+  public static void main(String[] args) throws IOException {
+      for (LogType value : LogType.values()) {
+        // 구역 코드 구하기
+        String logApi = "https://api.nasa.gov/planetary/apod";
+
+        StringBuilder urlBuilder = new StringBuilder(logApi);
+//        urlBuilder.append("?").append(URLEncoder.encode("date", StandardCharsets.UTF_8)).append("=").append(apiKey);
+        urlBuilder.append("?").append(URLEncoder.encode("api_key", StandardCharsets.UTF_8)).append("=").append(apiKey);
+        urlBuilder.append("&").append(URLEncoder.encode("start_date", StandardCharsets.UTF_8)).append("=").append(URLEncoder.encode("2023-08-01", StandardCharsets.UTF_8));
+        urlBuilder.append("&").append(URLEncoder.encode("end_date", StandardCharsets.UTF_8)).append("=").append(URLEncoder.encode("2023-08-21", StandardCharsets.UTF_8));
+
+        HttpURLConnection conn = HttpConnection.getHttpURLConnection(urlBuilder);
+
+        assert conn != null;
+        try (BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+          StringBuilder sb = new StringBuilder();
+          String line;
+          while ((line = rd.readLine()) != null) {
+            sb.append(line);
+          }
+          System.out.println("sb.toString() >>> " + sb);
+
+        }
+        conn.disconnect();
+      }
   }
 }

@@ -1,0 +1,28 @@
+[
+  {
+    "time21_5": "2016-09-06T14:18Z",
+    "latitude": -20.0,
+    "longitude": 120.0,
+    "halfAngle": 31.0,
+    "speed": 674.0,
+    "type": "C",
+    "isMostAccurate": true,
+    "associatedCMEID": "2016-09-06T08:54:00-CME-001",
+    "note": "",
+    "catalog": "M2M_CATALOG",
+    "link": "https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/CMEAnalysis/11233/-1"
+  },
+  {
+    "time21_5": "2016-09-15T04:24Z",
+    "latitude": -18.0,
+    "longitude": -122.0,
+    "halfAngle": 43.0,
+    "speed": 722.0,
+    "type": "C",
+    "isMostAccurate": true,
+    "associatedCMEID": "2016-09-14T23:36:00-CME-001",
+    "note": "Measured with swpc_cat using C3 and STA Cor2 imagery.",
+    "catalog": "M2M_CATALOG",
+    "link": "https://webtools.ccmc.gsfc.nasa.gov/DONKI/view/CMEAnalysis/11256/-1"
+  }
+]
