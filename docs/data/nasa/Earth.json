@@ -1,2 +1,3 @@
 // https://api.nasa.gov/planetary/earth/imagery?lon=100.75&lat=1.5&date=2014-02-01&api_key=DEMO_KEY
 // request 시간이 너무 오래걸려서 데이터 못받고있음 ㅋㅋ
+// https://api.nasa.gov/planetary/earth/assets?lon=-95.33&lat=29.78&date=2018-01-01&&dim=0.10&api_key=DEMO_KEY
