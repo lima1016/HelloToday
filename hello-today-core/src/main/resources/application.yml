@@ -1,4 +1,6 @@
-
+#data-api-key: 3g%2Fd4w%2FtARZLfMnVnR4Qp%2FBSmp5Y6ruf5IH9X1FIgMomKQQYCbI5pn1NBlKWJDQgfkswjUJfBwVfp5tT%2FGTU4g%3D%3D
+# nasa-api
+api-key: Rg8aLCbBMc0HGHey5sZwSFRdJ3qvOM5CeRRtxeoU
 
 spring:
   datasource:

@@ -17,6 +17,8 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 @Slf4j
 public class KafkaConsumerConfig {
 
+
+  // TODO: spark 넣어야해.
   public void run() {
       Properties properties = new Properties();
       properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");

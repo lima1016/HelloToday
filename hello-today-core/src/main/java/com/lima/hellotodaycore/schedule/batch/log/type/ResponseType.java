@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.schedule.type;
+package com.lima.hellotodaycore.schedule.batch.log.type;
 
 import lombok.Getter;
 
