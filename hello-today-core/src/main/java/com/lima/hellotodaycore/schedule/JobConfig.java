@@ -1,10 +1,8 @@
 package com.lima.hellotodaycore.schedule;
 
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
-import com.lima.hellotodaycore.kafka.consumer.KafkaConsumerConfig;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.batch.log.type.RegisterJob;
-
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -81,7 +79,7 @@ public class JobConfig {
 
       kafkaProducerConfig.send(context.getJobDetail().getJobDataMap().get("topic").toString(), responseBody);
 
-      new KafkaConsumerConfig().run();
+//      new KafkaConsumerConfig().run();
     }
   }
 }

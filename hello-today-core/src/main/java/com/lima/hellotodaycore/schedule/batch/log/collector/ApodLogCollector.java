@@ -2,12 +2,10 @@ package com.lima.hellotodaycore.schedule.batch.log.collector;
 
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
 import com.lima.hellotodaycore.common.utils.BeansUtils;
-import com.lima.hellotodaycore.kafka.consumer.KafkaConsumerConfig;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.JobConfig;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl.Builder;
-import okhttp3.Response;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 

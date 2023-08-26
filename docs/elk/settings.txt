@@ -1,0 +1,3 @@
+/usr/shart/logstash/config/logstash.yml
+/usr/shart/logstash/config/log4j2.properties
+/usr/share/logstash/pipeline/logstash.conf

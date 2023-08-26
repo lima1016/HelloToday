@@ -1,5 +1,6 @@
 // Earth Polychromatic Imaging Camera (EPIC)
-//https://api.nasa.gov/EPIC/api/natural/images?api_key=DEMO_KEY
+// 특정 날짜를 지정하지 않았기 때문에, 가장 최신의 데이터를 받아옵니다.
+// https://api.nasa.gov/EPIC/api/natural/images?api_key=DEMO_KEY
 
 [
   {

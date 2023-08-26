@@ -57,6 +57,10 @@ dependencies {
 
 	// connect http
 	implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.11.0'
+
+	// Search
+	implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-high-level-client', version: '7.17.12'
+
 }
 
 tasks.named('test') {

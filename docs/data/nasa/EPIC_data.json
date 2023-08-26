@@ -1,5 +1,5 @@
 // Earth Polychromatic Imaging Camera (EPIC)
-// 최근 데이터가 없어
+// 특정 날짜에 해당하는 지구의 이미지 정보를 받아옵니다.
 // https://api.nasa.gov/EPIC/api/natural/date/2023-08-01?api_key=DEMO_KEY
 
 [

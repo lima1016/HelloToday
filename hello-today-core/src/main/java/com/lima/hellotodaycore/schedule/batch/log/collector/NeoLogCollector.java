@@ -1,20 +1,16 @@
 package com.lima.hellotodaycore.schedule.batch.log.collector;
 
-
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
 import com.lima.hellotodaycore.common.utils.HelloDateUtils;
-import com.lima.hellotodaycore.kafka.consumer.KafkaConsumerConfig;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.JobConfig;
+import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
-import okhttp3.Response;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
-import org.quartz.JobExecutionException;
 
-import java.io.IOException;
-import java.time.LocalDate;
+// 이 정보는 지구에 잠재적인 위험을 가질 수 있는 천체의 특성과 궤도를 파악하는 데 중요
 
 @Slf4j
 public class NeoLogCollector implements Job {
@@ -28,7 +24,7 @@ public class NeoLogCollector implements Job {
   }
 
   @Override
-  public void execute(JobExecutionContext context) throws JobExecutionException {
+  public void execute(JobExecutionContext context) {
     try {
       String url = "http://api.nasa.gov/neo/rest/v1/feed?start_date=2023-08-19&end_date=2023-08-21&detailed=false";
       String startDate = LocalDate.now().toString();

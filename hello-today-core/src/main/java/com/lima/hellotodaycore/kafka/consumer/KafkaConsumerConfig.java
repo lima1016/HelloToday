@@ -45,6 +45,31 @@ public class KafkaConsumerConfig {
           break;
         }
       }
+
+      // LIM: 추가된 부분
+      // 자동 Offset Commit(enable.auto.commit=true) 대신 수동으로 Offset을 Commit
+//        for (ConsumerRecord<String, String> record : records) {
+//           메시지 처리 로직
+//          consumer.commitSync(Collections.singletonMap(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1)));
+//        }
+
+      // Consumer가 메시지를 가져오면, 그 메시지의 Offset 정보를 로그로 남김
+//        for (ConsumerRecord<String, String> record : records) {
+//          log.info("Consumed record with key {} and offset {}", record.key(), record.offset());
+//        }
+
+      // ConsumerRebalanceListener: 리밸런스가 발생할 때 호출되는 리스너를 추가하여, 리밸런스 이벤트를 로그로 남길 수 있음
+//        consumer.subscribe(Collections.singleton(topic), new ConsumerRebalanceListener() {
+//          @Override
+//          public void onPartitionsRevoked(Collection<TopicPartition> partitions) {
+//            log.info("Partitions revoked: {}", partitions);
+//          }
+//
+//          @Override
+//          public void onPartitionsAssigned(Collection<TopicPartition> partitions) {
+//            log.info("Partitions assigned: {}", partitions);
+//          }
+//        });
     } catch (Exception e) {
       log.error("", e);
     }

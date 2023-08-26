@@ -1,26 +1,53 @@
 version: '2' #docker-compose 버전 지정
 services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
+    networks:
+      - hello_network
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.14.0
+    networks:
+      - hello_network
+    ports:
+      - "5000:5000"
+    volumes:
+      - C:\git\HelloToday\logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.14.0
+    networks:
+      - hello_network
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
   # 서비스 명
   zookeeper:
     # 사용할 이미지
     image: wurstmeister/zookeeper
+#    networks:
+#      - hello_network
     # 컨테이너명 설정
     container_name: zookeeper
     # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
     ports:
       - "2181:2181"
-  # 서비스 명
   kafka:
-    # 사용할 이미지
     image: wurstmeister/kafka
-    # 컨테이너명 설정
+#    networks:
+#      - hello_network
     container_name: kafka
-    # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
     ports:
       - "9092:9092"
-    # 환경 변수 설정
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
       KAFKA_CREATE_TOPICS: "Topic:1:1"
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     # 볼륨 설정
@@ -49,6 +76,14 @@ services:
       MONGO_INITDB_DATABASE: hellonosql
     volumes:
       - mongodb_data:/data/db
-
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - "./nginx.conf:/etc/nginx/nginx.conf:ro"
 volumes:
   mongodb_data:
+networks:
+  hello_network:
+    driver: bridge
