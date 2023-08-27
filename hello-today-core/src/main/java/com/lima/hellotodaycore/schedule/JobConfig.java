@@ -76,10 +76,9 @@ public class JobConfig {
     assert response != null;
     if (response.isSuccessful()) {
       String responseBody = response.body().string();
+      String topic = context.getJobDetail().getJobDataMap().get("topic").toString();
 
-      kafkaProducerConfig.send(context.getJobDetail().getJobDataMap().get("topic").toString(), responseBody);
-
-//      new KafkaConsumerConfig().run();
+      kafkaProducerConfig.send(topic, responseBody);
     }
   }
 }

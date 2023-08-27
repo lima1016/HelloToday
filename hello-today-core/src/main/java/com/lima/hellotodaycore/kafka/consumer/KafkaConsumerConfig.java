@@ -13,28 +13,28 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 
 @Slf4j
+@Configuration
 public class KafkaConsumerConfig {
 
+  @Value("${spring.kafka.bootstrap-servers}")
+  private String server;
 
   // TODO: spark 넣어야해.
-  public void run() {
-      Properties properties = new Properties();
-      properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-      properties.put(ConsumerConfig.GROUP_ID_CONFIG, "mid_cast");
-      properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-      properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-      properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); // earliest, latest, none
+  public void run(String topic) {
+    log.info("================== consumer " + topic + " start====================");
+    Properties properties = getProperties(topic);
 
     try(Consumer<String, String> consumer = new KafkaConsumer<>(properties)) {
       // 구독할 토픽 설정
-      consumer.subscribe(Collections.singletonList("tb_hello_mid"));
-      System.out.println("================== consumer start==================== ");
+      consumer.subscribe(Collections.singletonList(topic));
       // 레코드를 지속적으로 폴링
       while (true) {
         ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-        // mongo에 저장 해야해.
 
         records.forEach(record -> {
           List deserialize = JsonUtils.deserialize(record.value(), List.class);
@@ -73,6 +73,18 @@ public class KafkaConsumerConfig {
     } catch (Exception e) {
       log.error("", e);
     }
+  }
+
+  @NotNull
+  private Properties getProperties(String topic) {
+    String groupId = topic + "_group";
+    Properties properties = new Properties();
+    properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, server);
+    properties.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
+    properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+    properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+//    properties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest"); // earliest, latest, none
+    return properties;
   }
 
 }
