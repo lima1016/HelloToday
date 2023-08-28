@@ -1,38 +1,8 @@
 version: '2' #docker-compose 버전 지정
 services:
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.0
-#    networks:
-#      - hello_network
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.type=single-node"
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-  logstash:
-    image: docker.elastic.co/logstash/logstash:7.14.0
-#    networks:
-#      - hello_network
-    ports:
-      - "5000:5000"
-    volumes:
-      - C:\git\HelloToday\logstash.conf:/usr/share/logstash/pipeline/logstash.conf
-    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
-  kibana:
-    image: docker.elastic.co/kibana/kibana:7.14.0
-#    networks:
-#      - hello_network
-    ports:
-      - "5601:5601"
-    depends_on:
-      - elasticsearch
-  # 서비스 명
   zookeeper:
     # 사용할 이미지
     image: wurstmeister/zookeeper
-#    networks:
-#      - hello_network
     # 컨테이너명 설정
     container_name: zookeeper
     # 접근 포트 설정 (컨테이너 외부:컨테이너 내부)
@@ -40,8 +10,6 @@ services:
       - "2181:2181"
   kafka:
     image: wurstmeister/kafka
-#    networks:
-#      - hello_network
     container_name: kafka
     ports:
       - "9092:9092"
@@ -66,8 +34,6 @@ services:
       POSTGRES_PASSWORD: 1016
   mongo:
     image: mongo:latest
-#    networks:
-#      - hello_network
     container_name: mongo
     ports:
       - "27017:27017"
@@ -85,6 +51,3 @@ services:
       - "./nginx.conf:/etc/nginx/nginx.conf:ro"
 volumes:
   mongodb_data:
-networks:
-  hello_network:
-    driver: bridge

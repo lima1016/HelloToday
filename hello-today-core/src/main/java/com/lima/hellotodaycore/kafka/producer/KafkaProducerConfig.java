@@ -2,6 +2,7 @@ package com.lima.hellotodaycore.kafka.producer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 
 // singleton 으로 설정해보자
 @Configuration
@@ -38,7 +40,15 @@ public class KafkaProducerConfig {
   }
 
   public void send(String topic, String message) {
-    System.out.println("message >>>> " + message);
-    kafkaTemplate().send(topic, message);
+    log.info("send().message : " + message);
+    CompletableFuture<SendResult<String, String>> future = kafkaTemplate().send(topic, topic + "_key" , message);
+    future.thenAccept(result -> {
+      log.info("뭐냐");
+      log.info("Message sent successfully: " + result.toString());
+    }).exceptionally(ex -> {
+      log.info("이건");
+      log.info("Failed to send message: " + ex.getMessage());
+      return null;
+    });
   }
 }
