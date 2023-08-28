@@ -3,7 +3,6 @@ package com.lima.hellotodaycore.schedule.batch.log.collector;
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
 import com.lima.hellotodaycore.common.utils.BeansUtils;
 import com.lima.hellotodaycore.common.utils.HelloDateUtils;
-import com.lima.hellotodaycore.kafka.consumer.KafkaConsumerConfig;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.JobConfig;
 import java.time.LocalDate;
@@ -19,12 +18,12 @@ public class NeoLogCollector implements Job {
 
   private final OkHttpClientConnection connection;
   private final KafkaProducerConfig kafkaProducerConfig;
-  private final KafkaConsumerConfig kafkaConsumerConfig;
+//  private final KafkaConsumerConfig kafkaConsumerConfig;
 
   public NeoLogCollector() {
     this.connection = BeansUtils.getBean(OkHttpClientConnection.class);
     this.kafkaProducerConfig = BeansUtils.getBean(KafkaProducerConfig.class);
-    this.kafkaConsumerConfig = BeansUtils.getBean(KafkaConsumerConfig.class);
+//    this.kafkaConsumerConfig = BeansUtils.getBean(KafkaConsumerConfig.class);
   }
 
   @Override
@@ -40,6 +39,7 @@ public class NeoLogCollector implements Job {
       builder.addQueryParameter("detailed", "false");
 
       JobConfig.sendHttpResponseToKafka(context, builder, kafkaProducerConfig);
+//      kafkaConsumerConfig.run(context.getJobDetail().getJobDataMap().get("topic").toString());
     } catch (Exception e) {
       log.error("", e);
     }

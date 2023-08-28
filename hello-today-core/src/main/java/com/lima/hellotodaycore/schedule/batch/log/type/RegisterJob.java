@@ -8,8 +8,8 @@ import org.quartz.Job;
 @Getter
 public enum RegisterJob {
 
-  APOD(ApodLogCollector.class, "tb_log_apod")
-  , NEO_FEED(NeoLogCollector.class, "tb_log_neo_feed")
+  APOD(ApodLogCollector.class, "tb_hello_apod")
+  , NEO_FEED(NeoLogCollector.class, "tb_hello_neo_feed")
   ;
 
   private final Class<? extends Job> clazz;
