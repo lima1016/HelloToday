@@ -56,7 +56,7 @@ public class MongoConnection {
   public void insertOne(String collectionName, Map<String, Object> data) {
     log.info("collectionName : " + collectionName + ", data : " + data);
     // collection 선택
-    MongoCollection<Document> collection = MongoConnection.getInstance().connect().getCollection(collectionName);
+    MongoCollection<Document> collection = connect().getCollection(collectionName);
     // 저장할 데이터 생성
     Document doc = new Document(data);
     collection.insertOne(doc);

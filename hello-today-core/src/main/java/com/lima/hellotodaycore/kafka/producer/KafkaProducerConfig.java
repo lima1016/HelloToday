@@ -40,13 +40,10 @@ public class KafkaProducerConfig {
   }
 
   public void send(String topic, String message) {
-    log.info("send().message : " + message);
     CompletableFuture<SendResult<String, String>> future = kafkaTemplate().send(topic, topic + "_key" , message);
     future.thenAccept(result -> {
-      log.info("뭐냐");
       log.info("Message sent successfully: " + result.toString());
     }).exceptionally(ex -> {
-      log.info("이건");
       log.info("Failed to send message: " + ex.getMessage());
       return null;
     });
