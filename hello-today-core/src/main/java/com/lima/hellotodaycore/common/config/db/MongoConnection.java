@@ -45,8 +45,7 @@ public class MongoConnection {
           .credential(credential)
           .build());
 
-      log.info("=============== connect success ===============");
-      return mongoClient.getDatabase("hellonosql");
+      return mongoClient.getDatabase(databaseName);
     } catch (Exception e) {
       log.error("", e);
       return null;
