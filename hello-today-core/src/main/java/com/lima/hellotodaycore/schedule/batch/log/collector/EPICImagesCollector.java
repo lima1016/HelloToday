@@ -1,5 +1,6 @@
 package com.lima.hellotodaycore.schedule.batch.log.collector;
 
+import com.lima.hellotodaycore.common.config.RegisterBeans;
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
 import com.lima.hellotodaycore.common.utils.BeansUtils;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
@@ -10,7 +11,7 @@ import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.springframework.beans.factory.annotation.Autowired;
 
-// APOD는 매일 천문학적 관측, 현상, 사진 등에 대한 설명과 함께 이미지나 동영상을 게시
+// 30-cm 구경의 Cassegrain 망원경을 결합하여 달의 통과와 같은 특정 천문학적 사건의 독특한 관점을 포착
 @Slf4j
 public class EPICImagesCollector implements Job {
 
@@ -20,7 +21,7 @@ public class EPICImagesCollector implements Job {
 
   public EPICImagesCollector() {
     this.connection = BeansUtils.getBean(OkHttpClientConnection.class);
-    this.kafkaProducerConfig = BeansUtils.getBean(KafkaProducerConfig.class);
+    this.kafkaProducerConfig = RegisterBeans.kafkaProducerBean();
   }
 
   @Override

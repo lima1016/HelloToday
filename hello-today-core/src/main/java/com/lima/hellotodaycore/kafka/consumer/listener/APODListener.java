@@ -1,11 +1,10 @@
-package com.lima.hellotodaycore.kafka.consumer;
+package com.lima.hellotodaycore.kafka.consumer.listener;
 
+import com.lima.hellotodaycore.common.config.RegisterBeans;
 import com.lima.hellotodaycore.common.config.db.MongoConnection;
-import com.lima.hellotodaycore.common.utils.BeansUtils;
 import com.lima.hellotodaycore.common.utils.JsonUtils;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ public class APODListener {
   private MongoConnection mongoConnection;
 
   public APODListener() {
-    this.mongoConnection = BeansUtils.getBean(MongoConnection.class);
+    this.mongoConnection = RegisterBeans.mongoConnectionBean();
   }
 
   @KafkaListener(topics = "tb_hello_apod", groupId = "tb_hello_apod_group")

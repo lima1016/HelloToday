@@ -1,7 +1,7 @@
-package com.lima.hellotodaycore.kafka.consumer;
+package com.lima.hellotodaycore.kafka.consumer.listener;
 
+import com.lima.hellotodaycore.common.config.RegisterBeans;
 import com.lima.hellotodaycore.common.config.db.MongoConnection;
-import com.lima.hellotodaycore.common.utils.BeansUtils;
 import com.lima.hellotodaycore.common.utils.JsonUtils;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class EPICImagesListener {
   private MongoConnection mongoConnection;
 
   public EPICImagesListener() {
-    this.mongoConnection = BeansUtils.getBean(MongoConnection.class);
+    this.mongoConnection = RegisterBeans.mongoConnectionBean();
   }
 
   @KafkaListener(topics = "tb_hello_epic_images", groupId = "tb_hello_epic_images_group")
