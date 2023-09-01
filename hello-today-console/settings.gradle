@@ -1,1 +1,2 @@
 rootProject.name = 'hello-today-console'
+includeBuild '../hello-today-core'

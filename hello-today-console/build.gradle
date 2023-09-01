@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.lima'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1-console'
 
 java {
     sourceCompatibility = '17'
@@ -44,6 +44,9 @@ dependencies {
     testImplementation 'org.springframework:spring-webflux'
     testImplementation 'org.springframework.graphql:spring-graphql-test'
     testImplementation 'org.springframework.kafka:spring-kafka-test'
+
+    // import core module
+    implementation 'com.lima:hello-today-core:0.0.1-core'
 }
 
 tasks.named('test') {

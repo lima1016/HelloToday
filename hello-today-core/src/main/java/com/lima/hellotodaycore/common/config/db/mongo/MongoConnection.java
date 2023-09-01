@@ -38,7 +38,7 @@ public class MongoConnection {
     MongoCredential credential = MongoCredential.createCredential("hellomongo", databaseName, "1016".toCharArray());
     try {
       MongoClient mongoClient = MongoClients.create(MongoClientSettings.builder()
-          .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress("localhost", 27017))))
+          .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress(host, port))))
           .credential(credential)
           .build());
 

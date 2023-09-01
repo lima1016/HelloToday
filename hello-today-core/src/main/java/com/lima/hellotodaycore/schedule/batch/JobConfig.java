@@ -36,6 +36,7 @@ public class JobConfig {
       jobFactory.setJobClass(value.getClazz());
       jobFactory.setName(value.name());
       data.put("topic", value.getTopic());
+      data.put("cron_time", value.getScheduleTime());
       jobFactory.setJobDataAsMap(data);
       jobFactory.afterPropertiesSet();
       jobDetailList.add(jobFactory.getObject());

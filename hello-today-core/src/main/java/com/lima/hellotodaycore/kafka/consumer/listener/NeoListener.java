@@ -1,6 +1,6 @@
 package com.lima.hellotodaycore.kafka.consumer.listener;
 
-import com.lima.hellotodaycore.common.config.db.mongo.MongoCollection;
+import com.lima.hellotodaycore.common.config.db.mongo.MongoExecutor;
 import com.lima.hellotodaycore.common.utils.JsonUtils;
 import java.util.Map;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -12,8 +12,8 @@ public class NeoListener {
 
   @KafkaListener(topics = "tb_hello_neo_feed", groupId = "tb_hello_neo_feed_group")
   public void listen(String message) {
-    MongoCollection mongoCollection = new MongoCollection();
+    MongoExecutor mongoExecutor = new MongoExecutor();
     Map deserialize = JsonUtils.deserialize(message, Map.class);
-    mongoCollection.insertOne("tb_hello_neo_feed", deserialize);
+    mongoExecutor.insertOne("tb_hello_neo_feed", deserialize);
   }
 }

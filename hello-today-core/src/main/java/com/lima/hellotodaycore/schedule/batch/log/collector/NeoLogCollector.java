@@ -28,7 +28,7 @@ public class NeoLogCollector implements Job {
   @Override
   public void execute(JobExecutionContext context) {
     try {
-      String url = "http://api.nasa.gov/neo/rest/v1/feed?start_date=2023-08-19&end_date=2023-08-21&detailed=false";
+      String url = "http://api.nasa.gov/neo/rest/v1/feed";
       String startDate = LocalDate.now().toString();
       String fromDate = DateTimeUtils.calculateFromDate(startDate, 1);
 
