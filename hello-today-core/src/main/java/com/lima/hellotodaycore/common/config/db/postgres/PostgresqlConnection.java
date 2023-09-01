@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.common.config.db;
+package com.lima.hellotodaycore.common.config.db.postgres;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class PostgresqlConfig {
+public class PostgresqlConnection {
 
   @Value("${spring.datasource.driver-class-name}")
   private String className;

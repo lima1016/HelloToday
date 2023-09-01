@@ -1,11 +1,9 @@
 package com.lima.hellotodaycore.kafka.consumer;
 
-import com.lima.hellotodaycore.common.config.db.MongoConnection;
 import com.lima.hellotodaycore.common.utils.JsonUtils;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;

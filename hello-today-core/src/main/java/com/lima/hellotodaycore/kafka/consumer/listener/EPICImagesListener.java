@@ -1,7 +1,6 @@
 package com.lima.hellotodaycore.kafka.consumer.listener;
 
-import com.lima.hellotodaycore.common.config.RegisterBeans;
-import com.lima.hellotodaycore.common.config.db.MongoConnection;
+import com.lima.hellotodaycore.common.config.db.mongo.MongoCollection;
 import com.lima.hellotodaycore.common.utils.JsonUtils;
 import java.util.List;
 import java.util.Map;
@@ -11,20 +10,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class EPICImagesListener {
 
-  private MongoConnection mongoConnection;
-
-  public EPICImagesListener() {
-    this.mongoConnection = RegisterBeans.mongoConnectionBean();
-  }
-
   @KafkaListener(topics = "tb_hello_epic_images", groupId = "tb_hello_epic_images_group")
   public void listen(String message) {
+    MongoCollection mongoCollection = new MongoCollection();
     List<Map<String, Object>> deserialize = JsonUtils.deserialize(message, List.class);
     // 가공 하고 싶으면 여기에
 
     assert deserialize != null;
     for (Map<String, Object> map : deserialize) {
-      mongoConnection.insertOne("tb_hello_epic_images", map);
+      mongoCollection.insertOne("tb_hello_epic_images", map);
     }
   }
 }

@@ -1,7 +1,7 @@
 package com.lima.hellotodaycore.common.config.http;
 
 
-import com.lima.hellotodaycore.common.utils.HelloDateUtils;
+import com.lima.hellotodaycore.common.utils.DateTimeUtils;
 import java.io.IOException;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +34,7 @@ public class OkHttpClientConnection {
 
 
   public HttpUrl.Builder buildParameters(String url) {
-    log.info("[time: " + HelloDateUtils.getNowStandardTime() + "] - url :" + url);
+    log.info("[time: " + DateTimeUtils.getNowStandardTime() + "] - url :" + url);
       HttpUrl.Builder urlBuilder = Objects.requireNonNull(
           Objects.requireNonNull(HttpUrl.parse(url))).newBuilder();
       urlBuilder.addQueryParameter("api_key", apiKey);

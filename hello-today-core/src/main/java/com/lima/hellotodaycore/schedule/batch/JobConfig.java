@@ -1,8 +1,8 @@
-package com.lima.hellotodaycore.schedule;
+package com.lima.hellotodaycore.schedule.batch;
 
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
-import com.lima.hellotodaycore.schedule.batch.log.type.RegisterJob;
+import com.lima.hellotodaycore.schedule.batch.log.RegisterJob;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;

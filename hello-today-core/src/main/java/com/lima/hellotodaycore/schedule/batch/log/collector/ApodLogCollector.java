@@ -3,9 +3,8 @@ package com.lima.hellotodaycore.schedule.batch.log.collector;
 import com.lima.hellotodaycore.common.config.RegisterBeans;
 import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
 import com.lima.hellotodaycore.common.utils.BeansUtils;
-//import com.lima.hellotodaycore.kafka.consumer.KafkaConsumerConfig;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
-import com.lima.hellotodaycore.schedule.JobConfig;
+import com.lima.hellotodaycore.schedule.batch.JobConfig;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl.Builder;
 import org.quartz.Job;
@@ -30,7 +29,6 @@ public class ApodLogCollector implements Job {
       String url = "https://api.nasa.gov/planetary/apod";
       Builder builder = connection.buildParameters(url);
       JobConfig.sendHttpResponseToKafka(context, builder, kafkaProducerConfig);
-//      kafkaConsumerConfig.run(context.getJobDetail().getJobDataMap().get("topic").toString());
     } catch (Exception e) {
       log.error("", e);
     }

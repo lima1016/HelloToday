@@ -1,6 +1,5 @@
 package com.lima.hellotodaycore.common.utils;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
-public class HelloDateUtils {
+public class DateTimeUtils {
 
   public static final String LOG_DATE_FORMAT = "yyyy-MM-dd";
   public static final String STANDARD_DATE_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
