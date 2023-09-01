@@ -17,8 +17,6 @@ public class EPICImagesCollector implements Job {
 
   private final OkHttpClientConnection connection;
   private final KafkaProducerConfig kafkaProducerConfig;
-
-
   public EPICImagesCollector() {
     this.connection = BeansUtils.getBean(OkHttpClientConnection.class);
     this.kafkaProducerConfig = RegisterBeans.kafkaProducerBean();
