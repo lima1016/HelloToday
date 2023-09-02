@@ -1,0 +1,48 @@
+이 예제는 react-three-fiber를 설치해야 합니다
+
+import React, { useRef, useState, useEffect } from 'react';
+import { Canvas } from '@react-three/fiber';
+import * as THREE from 'three';
+
+function SatelliteOrbit({ tleData }) {
+const satelliteRef = useRef();
+
+// 궤도 파라미터 추출
+const { line1, line2 } = tleData;
+
+// 위성의 궤도 계산 및 업데이트
+useEffect(() => {
+// TODO: TLE 데이터를 사용하여 궤도 계산
+
+// 궤도 계산 결과를 사용하여 위성의 위치 업데이트
+// satelliteRef.current.position.set(x, y, z);
+}, [tleData]);
+
+return (
+<mesh ref={satelliteRef}>
+{/* 위성 모델 또는 시각화를 추가 */}
+<sphereGeometry args={[1, 32, 32]} />
+<meshBasicMaterial color={new THREE.Color(0x00ff00)} />
+</mesh>
+);
+}
+
+function App() {
+const tleData = {
+line1: "1 25544U 98067A   23245.18384859  .00012361  00000+0  22303-3 0  9997",
+line2: "2 25544  51.6431 307.1028 0005223  22.4948  72.1532 15.50145609413738"
+};
+
+return (
+<div>
+<h1>Satellite Orbit Animation</h1>
+<Canvas>
+<ambientLight />
+<pointLight position={[10, 10, 10]} />
+<SatelliteOrbit tleData={tleData} />
+</Canvas>
+</div>
+);
+}
+
+export default App;
