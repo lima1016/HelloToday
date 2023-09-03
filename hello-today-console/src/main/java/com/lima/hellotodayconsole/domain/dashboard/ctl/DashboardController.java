@@ -2,8 +2,11 @@ package com.lima.hellotodayconsole.domain.dashboard.ctl;
 
 import static com.mongodb.client.model.Projections.include;
 
+import com.lima.hellotodayconsole.common.utils.HelloResponseUtil;
 import com.lima.hellotodaycore.common.config.db.mongo.MongoExecutor;
+import com.lima.hellotodaycore.schedule.batch.log.RegisterJob;
 import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCursor;
 import org.bson.Document;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,16 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/dashboard")
 public class DashboardController {
 
-  @GetMapping("/read/ne0-feed")
-  public void selectNeoFeed() {
-
-    // LIM: core에 mongo가 있어서 database가 null로 나옴 해결해야함
-    MongoExecutor mongoExecutor = new MongoExecutor();
-    FindIterable<Document> nedFeed = mongoExecutor.aggregate("tb_hello_ned_feed");
+  @GetMapping("/read/neo-feed")
+  public HelloResponseUtil selectNeoFeed() {
+    MongoExecutor mongoExecutor = new MongoExecutor(RegisterJob.APOD.getTopic());
+    FindIterable<Document> nedFeed = mongoExecutor.aggregate();
     nedFeed.projection(include("near_earth_objects"));
+    nedFeed.sort(include("_id"));
+    nedFeed.limit(1);
 
-    for (Document document : nedFeed) {
-      System.out.println(document.toJson());
-    }
+    MongoCursor<Document> cursor = nedFeed.cursor();
+
+    return HelloResponseUtil.getResponse(cursor.next().get("near_earth_objects"));
   }
 }

@@ -14,9 +14,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     // console 호출
-    axios.get("https://localhost:8080", {
+    axios.get(" http://localhost:8080/dashboard/v1/read/neo-feed", {
     }).then(response => {
-      const neos = Object.values(response.data.near_earth_objects).flat();
+      const neos = Object.values(response.data.response).flat();
       setNeoData(neos);
     });
   }, []);
@@ -29,10 +29,19 @@ const Dashboard = () => {
 
       // 가상의 지구
       svg.append("circle")
-        .attr("cx", centerX)
-        .attr("cy", centerY)
-        .attr("r", 50)
-        .style("fill", "blue");
+      .attr("cx", centerX)
+      .attr("cy", centerY)
+      .attr("r", 50)
+      .style("fill", "blue");
+
+      // 지구 사진
+      const earth = "./image/earth.jpg"; // 지구 이미지의 URL을 지정하세요.
+      svg.append("image")
+        .attr("xlink:href", earth)
+        .attr("x", centerX - 50) // 원의 중심에서 이미지의 크기를 빼줍니다.
+        .attr("y", centerY - 50) // 원의 중심에서 이미지의 크기를 빼줍니다.
+        .attr("width", 100)  // 이미지의 크기
+        .attr("height", 100); // 이미지의 크기
 
       // 운석
       svg.selectAll(".neo")
@@ -43,7 +52,7 @@ const Dashboard = () => {
         .attr("cx", (d, i) => centerX + Math.sin(i) * 100)
         .attr("cy", (d, i) => centerY + Math.cos(i) * 100)
         .attr("r", 5)
-        .style("fill", "red")
+        .style("fill", "#E97340")
         .transition()
         .duration(2000)
         .attr("cx", (d, i) => centerX + Math.sin(i) * (100 + d.estimated_diameter.meters.estimated_diameter_min))
