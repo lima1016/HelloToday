@@ -16,13 +16,13 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class MongoConnection {
   @Value("${spring.data.mongodb.authentication-database}")
-  private String databaseName;
+  private String databaseName = "hellonosql";
 
   @Value("${spring.data.mongodb.host}")
-  private String host;
+  private String host = "localhost";
 
   @Value("${spring.data.mongodb.port}")
-  private Integer port;
+  private Integer port = 27017;
 
   private static class MongoDBSingleton {
     private static final MongoConnection MONGO_SINGLETON = new MongoConnection();

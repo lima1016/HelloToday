@@ -14,12 +14,15 @@ public class MongoExecutor {
 
   private final MongoConnection mongoConnection;
 
-  public MongoExecutor() {
+  private String collectionName;
+
+  public MongoExecutor(String collectionName) {
     this.mongoConnection = RegisterBeans.mongoConnectionBean();
+    this.collectionName = collectionName;
   }
 
   // 이부분은 따로 분리 시키자 나중에... 여기서는 connection만 할 예정
-  public void insertOne(String collectionName, Map<String, Object> data) {
+  public void insertOne(Map<String, Object> data) {
     log.info("collectionName : " + collectionName + ", data : " + data);
     // collection 선택
     MongoCollection<Document> collection = mongoConnection.connect().getCollection(collectionName);
@@ -40,7 +43,8 @@ public class MongoExecutor {
     collection.insertMany(docs);
   }
 
-  public FindIterable<Document> aggregate(String collectionName) {
+  public FindIterable<Document> aggregate() {
+    System.out.println("collectionName >> " + collectionName);
     MongoCollection<Document> collection = mongoConnection.connect().getCollection(collectionName);
     return collection.find();
   }
