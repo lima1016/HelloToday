@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.common.config.db.postgres;
+package com.lima.hellotodaycore.common.db.postgres;
 
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Value;

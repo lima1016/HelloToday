@@ -3,7 +3,7 @@ package com.lima.hellotodayconsole.domain.dashboard.ctl;
 import static com.mongodb.client.model.Projections.include;
 
 import com.lima.hellotodayconsole.common.HelloJsonResponse;
-import com.lima.hellotodaycore.common.config.db.mongo.MongoExecutor;
+import com.lima.hellotodaycore.common.db.mongo.MongoExecutor;
 import com.lima.hellotodaycore.schedule.batch.log.RegisterJob;
 import com.mongodb.client.FindIterable;
 import org.bson.Document;

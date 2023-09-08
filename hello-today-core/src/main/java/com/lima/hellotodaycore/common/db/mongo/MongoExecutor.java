@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.common.config.db.mongo;
+package com.lima.hellotodaycore.common.db.mongo;
 
 import com.lima.hellotodaycore.common.config.RegisterBeans;
 import com.mongodb.client.FindIterable;
@@ -21,7 +21,6 @@ public class MongoExecutor {
     this.collectionName = collectionName;
   }
 
-  // 이부분은 따로 분리 시키자 나중에... 여기서는 connection만 할 예정
   public void insertOne(Map<String, Object> data) {
     log.info("collectionName : " + collectionName + ", data : " + data);
     // collection 선택

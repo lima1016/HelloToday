@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.common.config.db.mongo;
+package com.lima.hellotodaycore.common.db.mongo;
 
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @Slf4j
 public class MongoConnection {
+  // console 에서 부를때 value 값이 안불러짐
   @Value("${spring.data.mongodb.authentication-database}")
   private String databaseName = "hellonosql";
 
