@@ -1,4 +1,28 @@
 // Human-accessible NEOs data
+//  Near-Earth Object (NEO)에 관한 정보를 담고 있는 것으로 보입니다. NEO는 지구 근처에서 운동하는 소행성, 혜성 등을 포함하며, 이러한 객체들은 지구와의 충돌 가능성이 있기 때문에 연구와 모니터링의 대상
+/*
+count: 총 데이터 개수 (5000개)
+signature: 데이터의 출처와 버전 정보
+data: NEO에 대한 실제 데이터 배열
+obs_flag: 관측 플래그 (S는 아마 'Synthetic'일 가능성이 있습니다)
+fullname: NEO의 전체 이름
+h: 절대등급, NEO의 크기를 나타냄
+occ: 출현 빈도 또는 관측 횟수
+radar_snr_a: 레이더 신호 대 잡음비 (A)
+min_dur: 최소 지속 시간과 관련된 객체 (dv: 델타-v, dur: 지속 시간)
+obs_start: 관측 시작 날짜
+min_dv: 최소 델타-v와 관련된 객체 (dv: 델타-v, dur: 지속 시간)
+obs_end: 관측 종료 날짜
+radar_obs_g: 레이더 관측 (G)
+min_size: 최소 크기
+max_size: 최대 크기
+radar_snr_g: 레이더 신호 대 잡음비 (G)
+des: 설계 번호 또는 코드
+obs_mag: 관측 시의 등급 또는 밝기
+radar_obs_a: 레이더 관측 (A)
+n_via_traj: 경로에 대한 정보 또는 관련 변수 (불명확)
+orbit_id: 궤도 ID
+*/
 {
   "count": "5000",
   "signature": {

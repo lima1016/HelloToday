@@ -43,7 +43,6 @@ public class MongoExecutor {
   }
 
   public FindIterable<Document> aggregate() {
-    System.out.println("collectionName >> " + collectionName);
     MongoCollection<Document> collection = mongoConnection.connect().getCollection(collectionName);
     return collection.find();
   }

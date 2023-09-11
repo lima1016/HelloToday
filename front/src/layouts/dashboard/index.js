@@ -38,7 +38,7 @@ import typography from "assets/theme/base/typography";
 import colors from "assets/theme/base/colors";
 
 // Dashboard layout components
-import WelcomeMark from "layouts/dashboard/components/WelcomeMark";
+import NeoFeed from "layouts/dashboard/components/NeoFeed";
 import Projects from "layouts/dashboard/components/Projects";
 import OrderOverview from "layouts/dashboard/components/OrderOverview";
 import SatisfactionRate from "layouts/dashboard/components/SatisfactionRate";
@@ -107,7 +107,7 @@ function Dashboard() {
         <VuiBox mb={3}>
           <Grid container spacing="18px">
             <Grid item xs={12} lg={12} xl={5}>
-              <WelcomeMark />
+              <NeoFeed />
             </Grid>
             <Grid item xs={12} lg={6} xl={3}>
               <SatisfactionRate />

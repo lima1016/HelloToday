@@ -1,4 +1,19 @@
 // NEO Earth impact risk assessment data
+// 지구에 접근할 수 있는 천체(Near-Earth Objects, NEOs)에 관한 정보를 담고 있습니다. 이러한 객체는 소행성이나 혜성일 수 있으며, 그들이 지구에 얼마나 가까이 접근할 수 있는지, 어느 정도의 크기와 속도를 가지고 있는지 등을 분석하는 것은 중요한 연구 주제입니다.
+//des: 천체의 식별자(Designation)
+//range: 예상 접근 년도의 범위
+//last_obs_jd: 마지막 관측 Julian Date(율리우스 날짜)
+//h: 절대등급(Absolute Magnitude), 천체의 밝기를 나타냄
+//fullname: 천체의 전체 이름
+//id: 고유 ID
+//ps_max: 최대 Palermo Scale 값, 충돌 위험성을 나타냄
+//ip: 충돌 확률(Impact Probability)
+//v_inf: 무한대에서의 상대 속도 (km/s)
+//diameter: 지름 (km)
+//last_obs: 마지막 관측 날짜
+//n_imp: 예상 충돌 횟수(Number of Impacts)
+//ps_cum: 누적 Palermo Scale 값
+//ts_max: 최대 Torino Scale 값, 또 다른 충돌 위험성 척도 (이 경우 모두 0)
 {
   "data": [
     {

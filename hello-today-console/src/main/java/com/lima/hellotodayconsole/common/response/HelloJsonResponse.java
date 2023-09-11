@@ -1,4 +1,4 @@
-package com.lima.hellotodayconsole.common;
+package com.lima.hellotodayconsole.common.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
