@@ -41,6 +41,12 @@ public class OkHttpClientConnection {
       return urlBuilder;
   }
 
+  public HttpUrl.Builder buildUrl(String url) {
+    log.info("[time: " + DateTimeUtils.getNowStandardTime() + "] - url :" + url);
+    return Objects.requireNonNull(
+        Objects.requireNonNull(HttpUrl.parse(url))).newBuilder();
+  }
+
   public static Response connectOkHttpClient (HttpUrl.Builder urlBuilder) {
     try {
       String url = urlBuilder.build().toString();

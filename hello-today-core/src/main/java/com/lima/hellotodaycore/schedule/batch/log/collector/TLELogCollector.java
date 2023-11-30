@@ -10,15 +10,15 @@ import okhttp3.HttpUrl.Builder;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 
-// Earth Polychromatic Imaging Camera (EPIC)
+// TLE (Two-Line Element Set) 형식으로 주어진 위성의 궤도 정보
 @Slf4j
-public class EPICImagesCollector implements Job {
+public class TLELogCollector implements Job {
 
   private final OkHttpClientConnection connection;
   private final KafkaProducerConfig kafkaProducerConfig;
 
 
-  public EPICImagesCollector() {
+  public TLELogCollector() {
     this.connection = BeansUtils.getBean(OkHttpClientConnection.class);
     this.kafkaProducerConfig = RegisterBeans.kafkaProducerBean();
   }
@@ -26,8 +26,8 @@ public class EPICImagesCollector implements Job {
   @Override
   public void execute(JobExecutionContext context) {
     try {
-      String url = "https://api.nasa.gov/EPIC/api/natural/images";
-      Builder builder = connection.buildParameters(url);
+      String url = "https://tle.ivanstanojevic.me/api/tle";
+      Builder builder = connection.buildUrl(url);
       JobConfig.sendHttpResponseToKafka(context, builder, kafkaProducerConfig);
     } catch (Exception e) {
       log.error("", e);

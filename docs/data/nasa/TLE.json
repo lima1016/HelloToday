@@ -1,3 +1,4 @@
+// TLE (Two-Line Element Set) 형식으로 주어진 위성의 궤도 정보입니다. TLE는 특히 지구 주위를 돌고 있는 인공위성의 위치를 예측하는 데 사용되는 데이터 형식입니다. 이 데이터는 국제우주정거장(ISS, International Space Station)에 관한 것으로 보입니다.
 {
   "@context": "https:\/\/www.w3.org\/ns\/hydra\/context.jsonld",
   "@id": "https:\/\/tle.ivanstanojevic.me\/api\/tle\/",
