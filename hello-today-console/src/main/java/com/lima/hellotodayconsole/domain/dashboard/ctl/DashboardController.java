@@ -23,8 +23,6 @@ public class DashboardController {
   @GetMapping("/v1/read/neo-feed")
   public HelloJsonResponse selectNeoFeed() {
 
-    FindIterable<Document> nedFeed = dashboardService.getDocuments();
-
-    return HelloJsonResponse.getResponse(nedFeed.cursor().next().get("near_earth_objects"));
+    return HelloJsonResponse.getResponse(dashboardService.getDocuments());
   }
 }

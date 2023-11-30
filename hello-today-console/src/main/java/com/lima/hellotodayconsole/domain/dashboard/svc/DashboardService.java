@@ -12,12 +12,12 @@ import static com.mongodb.client.model.Projections.include;
 @Service
 public class DashboardService {
 
-  public FindIterable<Document> getDocuments() {
+  public <T> T getDocuments() {
     MongoExecutor mongoExecutor = new MongoExecutor(RegisterJob.NEO_FEED.getTopic());
     FindIterable<Document> nedFeed = mongoExecutor.aggregate();
     nedFeed.sort(include("_id"));
     nedFeed.projection(include("near_earth_objects"));
     nedFeed.limit(1);
-    return nedFeed;
+    return (T) nedFeed.cursor().next().get("near_earth_objects");
   }
 }
