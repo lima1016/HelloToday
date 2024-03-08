@@ -16,14 +16,17 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 public class MongoConnection {
   // console 에서 부를때 value 값이 안불러짐
+  @Value("${spring.data.mongodb.database}")
+  private String databaseName;
+
   @Value("${spring.data.mongodb.authentication-database}")
-  private String databaseName = "hellonosql";
+  private String authenticationDB;
 
   @Value("${spring.data.mongodb.host}")
-  private String host = "localhost";
+  private String host;
 
   @Value("${spring.data.mongodb.port}")
-  private Integer port = 27017;
+  private Integer port;
 
   private static class MongoDBSingleton {
     private static final MongoConnection MONGO_SINGLETON = new MongoConnection();
@@ -36,7 +39,7 @@ public class MongoConnection {
   @Bean
   public MongoDatabase connect() {
     log.info("databaseName : " + databaseName + ", host : " + host + ", port : " + port);
-    MongoCredential credential = MongoCredential.createCredential("hellomongo", databaseName, "1016".toCharArray());
+    MongoCredential credential = MongoCredential.createCredential("hellomongo", authenticationDB, "1016".toCharArray());
     try {
       MongoClient mongoClient = MongoClients.create(MongoClientSettings.builder()
           .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress(host, port))))

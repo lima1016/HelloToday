@@ -22,7 +22,7 @@ public class MongoExecutor {
   }
 
   public void insertOne(Map<String, Object> data) {
-    log.info("collectionName : " + collectionName + ", data : " + data);
+    log.debug("collectionName : " + collectionName + ", data : " + data);
     // collection 선택
     MongoCollection<Document> collection = mongoConnection.connect().getCollection(collectionName);
     // 저장할 데이터 생성
@@ -32,7 +32,7 @@ public class MongoExecutor {
 
   // LIM: 연구중....
   public <T> void insert(String collectionName, T data) {
-    log.info("collectionName : " + collectionName + ", data : " + data);
+    log.debug("collectionName : " + collectionName + ", data : " + data);
     List<Document> docs = new ArrayList<>();
     // collection 선택
     MongoCollection<Document> collection = mongoConnection.connect().getCollection(collectionName);

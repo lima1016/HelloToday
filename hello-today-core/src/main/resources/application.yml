@@ -15,9 +15,10 @@ spring:
     bootstrap-servers: localhost:9092
   data:
     mongodb:
-      uri: mongodb://hellomongo:1016@localhost:27017/hellonosql
-      authentication-database: hellonosql
+      uri: mongodb://localhost:27017/${spring.data.mongodb.database}?authSource=${spring.data.mongodb.authentication-database}&readPreference=primaryPreferred&directConnection=true
+      authentication-database: admin
       port: 27017
       host: localhost
+      database: hellonosql
 server:
   port: 8090
