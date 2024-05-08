@@ -29,16 +29,16 @@ public class MongoConnection {
   private Integer port;
 
   private static class MongoDBSingleton {
-    private static final MongoConnection MONGO_SINGLETON = new MongoConnection();
+    private static final MongoDatabase MONGO_SINGLETON = new MongoConnection().connect();
   }
 
-  public static MongoConnection getInstance() {
+  public static MongoDatabase getInstance() {
     return MongoDBSingleton.MONGO_SINGLETON;
   }
 
   @Bean
   public MongoDatabase connect() {
-    log.info("databaseName : " + databaseName + ", host : " + host + ", port : " + port);
+    log.info("databaseName : {}, host : {}, port : {}", databaseName, host, port);
     MongoCredential credential = MongoCredential.createCredential("hellomongo", authenticationDB, "1016".toCharArray());
     try {
       MongoClient mongoClient = MongoClients.create(MongoClientSettings.builder()
@@ -48,7 +48,7 @@ public class MongoConnection {
 
       return mongoClient.getDatabase(databaseName);
     } catch (Exception e) {
-      log.error("", e);
+      log.error("MongoDB connection failed", e);
       return null;
     }
   }
