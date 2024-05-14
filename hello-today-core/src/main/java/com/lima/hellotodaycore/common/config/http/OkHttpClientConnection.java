@@ -29,7 +29,7 @@ public class OkHttpClientConnection {
   }
 
   public static OkHttpClient getInstance() {
-    return OkHttpClientConnection.OkHttpClientSingleton.OK_HTTP_CLIENT;
+    return OkHttpClientSingleton.OK_HTTP_CLIENT;
   }
 
 
@@ -39,12 +39,6 @@ public class OkHttpClientConnection {
           Objects.requireNonNull(HttpUrl.parse(url))).newBuilder();
       urlBuilder.addQueryParameter("api_key", apiKey);
       return urlBuilder;
-  }
-
-  public HttpUrl.Builder buildUrl(String url) {
-    log.info("[time: " + DateTimeUtils.getNowStandardTime() + "] - url :" + url);
-    return Objects.requireNonNull(
-        Objects.requireNonNull(HttpUrl.parse(url))).newBuilder();
   }
 
   public static Response connectOkHttpClient (HttpUrl.Builder urlBuilder) {

@@ -27,7 +27,7 @@ public class TLELogCollector implements Job {
   public void execute(JobExecutionContext context) {
     try {
       String url = "https://tle.ivanstanojevic.me/api/tle";
-      Builder builder = connection.buildUrl(url);
+      Builder builder = connection.buildParameters(url);
       JobConfig.sendHttpResponseToKafka(context, builder, kafkaProducerConfig);
     } catch (Exception e) {
       log.error("", e);

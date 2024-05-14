@@ -8,25 +8,14 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
 public class MongoConnection {
-  // console 에서 부를때 value 값이 안불러짐
-  @Value("${spring.data.mongodb.database}")
-  private String databaseName;
 
-  @Value("${spring.data.mongodb.authentication-database}")
-  private String authenticationDB;
-
-  @Value("${spring.data.mongodb.host}")
-  private String host;
-
-  @Value("${spring.data.mongodb.port}")
-  private Integer port;
+  private final String host = "localhost";
+  private final Integer port = 27017;
 
   private static class MongoDBSingleton {
     private static final MongoDatabase MONGO_SINGLETON = new MongoConnection().connect();
@@ -36,8 +25,10 @@ public class MongoConnection {
     return MongoDBSingleton.MONGO_SINGLETON;
   }
 
-  @Bean
   public MongoDatabase connect() {
+    String databaseName = "hellonosql";
+    String authenticationDB = "admin";
+
     log.info("databaseName : {}, host : {}, port : {}", databaseName, host, port);
     MongoCredential credential = MongoCredential.createCredential("hellomongo", authenticationDB, "1016".toCharArray());
     try {

@@ -27,7 +27,7 @@ public class SentryLogCollector implements Job {
   public void execute(JobExecutionContext context) {
     try {
       String url = "https://ssd-api.jpl.nasa.gov/sentry.api";
-      Builder builder = connection.buildUrl(url);
+      Builder builder = connection.buildParameters(url);
       JobConfig.sendHttpResponseToKafka(context, builder, kafkaProducerConfig);
     } catch (Exception e) {
       log.error("", e);

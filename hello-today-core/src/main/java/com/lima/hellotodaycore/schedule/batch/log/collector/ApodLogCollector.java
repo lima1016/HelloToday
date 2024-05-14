@@ -7,6 +7,7 @@ import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.batch.JobConfig;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl.Builder;
+import okhttp3.OkHttpClient;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 
@@ -19,6 +20,7 @@ public class ApodLogCollector implements Job {
 
 
   public ApodLogCollector() {
+    OkHttpClient instance = OkHttpClientConnection.getInstance();
     this.connection = BeansUtils.getBean(OkHttpClientConnection.class);
     this.kafkaProducerConfig = RegisterBeans.kafkaProducerBean();
   }
