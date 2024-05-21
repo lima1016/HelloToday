@@ -22,17 +22,14 @@ public class ZookeeperCluster {
     this.sessionTimeout = sessionTimeout;
   }
 
-  public void connectCluster (String node) {
-    try {
-      ZooKeeper zookeeper = new ZooKeeper(host, sessionTimeout, new Watcher() {
-        public void process(WatchedEvent event) {
-          // 이벤트 처리
-          System.out.println("Event received: " + event);
-        }
-      });
+  public void connectCluster (String node) throws Exception {
+    try (ZooKeeper zookeeper = new ZooKeeper(host, sessionTimeout, event -> {
+      // 이벤트 처리
+      System.out.println("Event received: " + event);
+    })) {
 
       // Zookeeper 클러스터의 맴버 노드 생성
-      zookeeper.create("/"+node, "data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+      zookeeper.create("/" + node, "data".getBytes(), Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
       // /member 는 Zookeeper의 계층 구조에서 위치를 지정한다.
       // 노드의 ACL(Access Control List)을 나타낸다. 이 ACL 설정은 노드에 대한 접근 권한을 지정한다.
       // ZooDefs.Ids~는 모든 권한을 허용하는 기본 ACL을 나타낸다. 실제 운영환경에서는 보안을 고려하여 더 엄격하게 설정/
@@ -40,9 +37,7 @@ public class ZookeeperCluster {
       // 즉 노드가 삭제되지 않는 한 지속적으로 유지된다.
 
       // Zookeeper 클러스터 맴버 노드 확인
-      System.out.println("Cluster members: " + zookeeper.getChildren("/"+node, false));
-    } catch (Exception e) {
-      throw new RuntimeException(e);
+      System.out.println("Cluster members: " + zookeeper.getChildren("/" + node, false));
     }
 
   }
