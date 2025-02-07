@@ -52,7 +52,7 @@ public class JobConfig {
       for (JobDetail jobDetail : jobDetails) {
         CronTriggerFactoryBean triggerFactory = new CronTriggerFactoryBean();
         triggerFactory.setJobDetail(jobDetail);
-        triggerFactory.setCronExpression("0 0/5 * * * ?"); // 매일 오전 6시마다 0 0/5 * * * ? => 매 5분 마다
+        triggerFactory.setCronExpression("0 0/5 * * * ?"); // 매 5분 마다
         triggerFactory.afterPropertiesSet();
         triggers.add(triggerFactory.getObject());
       }
