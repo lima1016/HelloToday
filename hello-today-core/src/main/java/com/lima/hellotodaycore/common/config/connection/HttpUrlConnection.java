@@ -1,4 +1,4 @@
-package com.lima.hellotodaycore.common.config.http;
+package com.lima.hellotodaycore.common.config.connection;
 
 import lombok.extern.slf4j.Slf4j;
 

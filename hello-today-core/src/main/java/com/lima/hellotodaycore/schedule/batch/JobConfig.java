@@ -1,6 +1,6 @@
 package com.lima.hellotodaycore.schedule.batch;
 
-import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
+import com.lima.hellotodaycore.common.config.connection.OkHttpClientConnection;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
 import com.lima.hellotodaycore.schedule.batch.log.RegisterJob;
 import java.io.IOException;

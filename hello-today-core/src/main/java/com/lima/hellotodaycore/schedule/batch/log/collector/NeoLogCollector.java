@@ -1,7 +1,7 @@
 package com.lima.hellotodaycore.schedule.batch.log.collector;
 
 import com.lima.hellotodaycore.common.config.RegisterBeans;
-import com.lima.hellotodaycore.common.config.http.OkHttpClientConnection;
+import com.lima.hellotodaycore.common.config.connection.OkHttpClientConnection;
 import com.lima.hellotodaycore.common.utils.BeansUtils;
 import com.lima.hellotodaycore.common.utils.DateTimeUtils;
 import com.lima.hellotodaycore.kafka.producer.KafkaProducerConfig;
